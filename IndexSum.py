@@ -1,20 +1,11 @@
-N=int(input())
-LstNums=sorted(tuple(map(int, input().split())))
-M=int(input())
-LstRq=tuple(map(int, input().split()))
-Sum=0
-for i in range(M):
-  QNum=LstRq[i]
-  if QNum in LstNums:
-    Sum+=LstNums.index(QNum)+1
-  else:
-    Sum+=0
+import bisect
+N = int(input())
+LstNums = [int(x) for x in input().split()] 
+M = int(input())
+LstRq = [int(x) for x in input().split()]
+Sum = 0
+for item in LstRq:
+    index = bisect.bisect_left(LstNums, item)
+    if index < N and LstNums[index] == item:  # Verifica que el item se encontró
+        Sum += index + 1
 print(Sum)
-
-6
-12 25 36 47 53 71
-3
-47 24 12
-
-
-5
