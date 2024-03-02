@@ -16,5 +16,16 @@ while disponibles>0 and len(LstReSellers)>0:
     LstReSellers.popleft()
     if h%5!=0:
         LstReSellers.append(i)
-if len(LstReSellers)>0 and disponibles!=0:
+if len(LstReSellers)==0 and disponibles!=0:
     print('quedaron boletas disponibles')
+
+5 35
+1001 3
+1002 3
+1003 3
+1004 3
+1005 3
+
+
+1003 2
+
