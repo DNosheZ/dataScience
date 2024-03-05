@@ -1,50 +1,30 @@
 from collections import deque
-rev=[')',']','}']
+rev1=[')',']','}']
+rev2=['(','[','{']
 for _ in range(int(input())):
     exp=deque(input().split())
+    exp2=deque()
     if exp[-1]!=';':
         print('incorrecta')
         continue
     exp.pop()#eliminamos la coma, para facilitar la vida
     while exp:
-        cont1=exp[0]
-        cont2=exp[-1]
-        cont3=exp[1]
-        if cont1=='(':#se revisa que se halla abierto con parentesis
-            if cont2!=rev[0] and cont3!=rev[0]:
+        if exp[0] in rev1:
+            if exp[0]==')': bop=rev2[0]
+            elif exp[0]==']': bop=rev2[1]
+            elif exp[0]=='}': bop=rev2[2]
+            if exp2[-1] !=bop:  #con un solo ordenador mal ingresado, se arruina la compilacion
                 print('incorrecta')
                 break
             else:
-                if cont2==rev[0]: exp.pop(), exp.popleft()
-                elif  cont3==rev[0]: 
-                    for i in range(2): exp.popleft()
-                continue
-
-        elif cont1=='[':#o con corchete
-            if cont2!=rev[1] and cont3!=rev[1]:
-                print('incorrecta')
-                break
-            else:
-                if cont2==rev[1]: exp.pop(), exp.popleft()
-                elif  cont3==rev[1]: 
-                    for i in range(2): exp.popleft()
-                continue
-
-        elif cont1=='{':#o con llave
-            if cont2!=rev[2] and cont3!=rev[2]:
-                print('incorrecta')
-                break
-            else:
-                if cont2==rev[2]: exp.pop(), exp.popleft()
-                elif  cont3==rev[2]: 
-                    for i in range(2): exp.popleft()
-                continue
-
-        else:
-            print('incorrecta')
-            break
-    if  not exp:print("correcta")
+                exp.popleft()
+                exp2.pop()
+                
+        else:#
+            exp2.append(exp.popleft())
+    if  len(exp)==0 or len(exp2)==0 : print('correcta')
     continue
+
 
 3
 { [ ( ) ] } ;
