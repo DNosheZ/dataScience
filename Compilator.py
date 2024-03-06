@@ -13,7 +13,7 @@ for _ in range(int(input())):
             if exp[0]==')': bop=rev2[0]
             elif exp[0]==']': bop=rev2[1]
             elif exp[0]=='}': bop=rev2[2]
-            if exp2[-1] !=bop:  #con un solo ordenador mal ingresado, se arruina la compilacion
+            if exp2[-1] !=bop:  
                 print('incorrecta')
                 break
             else:
@@ -24,14 +24,3 @@ for _ in range(int(input())):
             exp2.append(exp.popleft())
     if  len(exp)==0 or len(exp2)==0 : print('correcta')
     continue
-
-
-3
-{ [ ( ) ] } ;
-[ ] { } ( ) ;
-( ) { [ } ] ;
-
-
-correcta
-correcta
-incorrecta
