@@ -25,7 +25,7 @@ while True:
                         sum*=10
                     else:
                         break
-            print(sum)
+                print(sum)
     else:continue#si no se entendio la instruccion, seguimos el programa hasta el end
 
 9
