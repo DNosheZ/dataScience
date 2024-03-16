@@ -4,6 +4,7 @@ for _ in range(C):
   Set=list(map(int,input().split))
   if Set[-1]!=-1:continue
   Set.pop()
+  heapq.heapify(Set)
   while True:
     InstantSum=0
     if len(Set)==2:break
