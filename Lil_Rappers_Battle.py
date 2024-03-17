@@ -2,6 +2,9 @@ import heapq
 Alfa=[]
 Beta=[]
 Gamma=[]
+heapq.heapify(Alfa)
+heapq.heapify(Beta)
+heapq.heapify(Gamma)
 A_t_points=0
 B_t_points=0
 C_t_points=0
