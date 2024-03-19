@@ -33,3 +33,20 @@ while True:
         if Add[0]=='A': heapq.heappush(Alfa, int(Add[1]))
         elif Add[0]=='B': heapq.heappush(Beta, int(Add[1]))
         elif Add[0]=='C': heapq.heappush(Gamma, int(Add[1])) 
+
+A 10
+A 20
+B 15
+B 18
+C 10
+C 16
+menores
+menores
+B 24
+C 24
+A 30
+B 28
+menores
+menores
+fin del juego
+
