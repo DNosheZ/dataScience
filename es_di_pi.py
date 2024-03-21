@@ -15,3 +15,5 @@ while Track<=Duracion:
     if len(Star)>0 and Track==Star[0]:print(Track);heapq.heappop(Star)
     for _ in range(Baki):print(Track)
     Track+=1
+#cada tono suena cada b milisegundos despues de su momento de inicio
+#momento de inicio del tono + b_milisegundos
