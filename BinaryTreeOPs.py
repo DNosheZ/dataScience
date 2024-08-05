@@ -57,10 +57,10 @@ class BinarySearchTree:
 
 
 for _ in range(int(input())):
-    nums=map(int, input().split(' '))
-    nums=nums[:-1]
+    num=map(int, input().split(' '))
     bst = BinarySearchTree()
-    for i in nums:
+    for i in num:
+        if i==-1:break
         bst.insert(i)
     height=bst.height()
     leaves=bst.countLeaves()
