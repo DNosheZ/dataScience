@@ -32,3 +32,38 @@ class BinarySearchTree:
         if key < root.key:
             return self._searchRecursively(root.left, key)
         return self._searchRecursively(root.right, key)
+    
+    def height(self):
+        return self._heightRecursively(self.root)
+
+    def _heightRecursively(self, root):
+        if root is None:
+            return 0
+        else:
+            left_height = self._heightRecursively(root.left)
+            right_height = self._heightRecursively(root.right)
+            return max(left_height, right_height) + 1
+
+    # Método para contar los nodos hoja
+    def countLeaves(self):
+        return self._countLeavesRecursively(self.root)
+
+    def _countLeavesRecursively(self, root):
+        if root is None:
+            return 0
+        if root.left is None and root.right is None:
+            return 1
+        return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
+
+
+for _ in range(int(input())):
+    nums=map(int, input().split(' '))
+    nums=nums[:-1]
+    bst = BinarySearchTree()
+    for i in nums:
+        bst.insert(i)
+    height=bst.height()
+    leaves=bst.countLeaves()
+    variable=2**(height-1)
+    if variable==leaves:print('completo')
+    else:print('no')
