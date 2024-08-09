@@ -55,7 +55,7 @@ class BinarySearchTree:
             return 1
         return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
 
-
+#Ejercicio 6
 for _ in range(int(input())):
     num=map(int, input().split(' '))
     bst = BinarySearchTree()
@@ -67,3 +67,32 @@ for _ in range(int(input())):
     variable=2**(height-1)
     if variable==leaves:print('completo')
     else:print('no')
+
+
+#Ejercicio 2
+for _ in range(int(input())):
+    num=map(int, input().split(' '))
+    bst = BinarySearchTree()
+    for i in num:
+        if i==-1:break
+        bst.insert(i)
+    height=bst.height()
+    print(f'{height}')
+
+#Ejercicio 3
+for _ in range(int(input())):
+    num=map(int, input().split(' '))
+    bst = BinarySearchTree()
+    for i in num:
+        if i==-1:break
+        bst.insert(i)
+    leaves=bst.countLeaves()
+    print(f'{leaves}')
+
+for _ in range(int(input())):
+    num=map(int, input().split(' '))
+    bst = BinarySearchTree()
+    for i in num:
+        if i==-1:break
+        bst.insert(i)
+    
