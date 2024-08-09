@@ -55,6 +55,18 @@ class BinarySearchTree:
             return 1
         return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
 
+
+    def preorderTraversal(self):
+        result = []
+        self._preorderRecursively(self.root, result)
+        return result
+
+    def _preorderRecursively(self, root, result):
+        if root:
+            result.append(root.key)          # Añadir la raíz
+            self._preorderRecursively(root.left, result)   # Recorrer el subárbol izquierdo
+            self._preorderRecursively(root.right, result)  # Recorrer el subárbol derecho
+
 #Ejercicio 6
 for _ in range(int(input())):
     num=map(int, input().split(' '))
@@ -67,6 +79,16 @@ for _ in range(int(input())):
     variable=2**(height-1)
     if variable==leaves:print('completo')
     else:print('no')
+
+# Ejercicio 1
+for _ in range(int(input())):
+    num = map(int, input().split(' '))
+    bst = BinarySearchTree()
+    for i in num:
+        if i == -1: break
+        bst.insert(i)
+    preorder = bst.preorderTraversal()
+    print(''.join(map(str, preorder)))
 
 
 #Ejercicio 2
