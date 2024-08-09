@@ -67,18 +67,27 @@ class BinarySearchTree:
             self._preorderRecursively(root.left, result)   # Recorrer el subárbol izquierdo
             self._preorderRecursively(root.right, result)  # Recorrer el subárbol derecho
 
-#Ejercicio 6
-for _ in range(int(input())):
-    num=map(int, input().split(' '))
-    bst = BinarySearchTree()
-    for i in num:
-        if i==-1:break
-        bst.insert(i)
-    height=bst.height()
-    leaves=bst.countLeaves()
-    variable=2**(height-1)
-    if variable==leaves:print('completo')
-    else:print('no')
+
+
+    def countSingleChildNodes(self):
+        return self._countSingleChildNodesRecursively(self.root)
+
+    def _countSingleChildNodesRecursively(self, root):
+        if root is None:
+            return 0
+        
+        count = 0
+        # Verificar si el nodo tiene un solo hijo
+        if (root.left is None and root.right is not None) or (root.left is not None and root.right is None):
+            count = 1
+        
+        # Sumar los hijos únicos de los subárboles izquierdo y derecho
+        count += self._countSingleChildNodesRecursively(root.left)
+        count += self._countSingleChildNodesRecursively(root.right)
+        
+        return count
+
+
 
 # Ejercicio 1
 for _ in range(int(input())):
@@ -111,10 +120,28 @@ for _ in range(int(input())):
     leaves=bst.countLeaves()
     print(f'{leaves}')
 
+#Ejercicio 4
 for _ in range(int(input())):
     num=map(int, input().split(' '))
     bst = BinarySearchTree()
     for i in num:
         if i==-1:break
         bst.insert(i)
+    print(f'{bst.countSingleChildNodes()}')
+
+
+#Ejercicio 5
+
+#Ejercicio 6
+for _ in range(int(input())):
+    num=map(int, input().split(' '))
+    bst = BinarySearchTree()
+    for i in num:
+        if i==-1:break
+        bst.insert(i)
+    height=bst.height()
+    leaves=bst.countLeaves()
+    variable=2**(height-1)
+    if variable==leaves:print('completo')
+    else:print('no')
     
