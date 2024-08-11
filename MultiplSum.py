@@ -12,19 +12,3 @@ while True:
     elif Txt[0]=='E':
         break
 
-  A 1
-A 2
-A 3
-A 4
-M 1
-M 2
-M 3
-A 5
-M 6
-E
-
-
-10
-6
-3
-0
