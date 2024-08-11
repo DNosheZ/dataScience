@@ -145,6 +145,17 @@ class AVLTree(object):
             elements.append(root.key)
             self._inOrderRecursively(root.right, elements)
 
+    def PosOrder(self):
+        elements = []
+        self._inOrderRecursively(self.root, elements)
+        return elements
+
+    def _PosOrderRecursively(self, root, elements):
+        if root:
+            self._PosOrderRecursively(root.left, elements)
+            self._PosOrderRecursively(root.right, elements)
+            elements.append(root.key)
+            
     def popMin(self):
         if self.size == 0:
             return None
@@ -153,18 +164,12 @@ class AVLTree(object):
             self.delete(key)
             return key
         
-# Ejemplo de aplicacion
-avl = AVLTree()
-elms = [13, 74, 48, 21, 99, 35, 60, 82, 57]
-for e in elms:
-    avl.insert(e)
-
-print(avl.search(35))   # True
-print(avl.search(19))   # False
-
-print(avl.inOrder())    # [13, 21, 35, 48, 57, 60, 74, 82, 99]
-
-avl.delete(48)
-print(avl.inOrder())    # [13, 21, 35, 57, 60, 74, 82, 99]
-
-print(avl.popMin())     # 13
+#Ejercicio 1
+for _ in range(int(input())):
+    cadena=map(str, input().split(' '))
+    arbol=AVLTree()
+    for c in cadena:
+        if c=='#':break
+        arbol.insert(c)
+    posOrderList=arbol.PosOrder()
+    print(''.join(map(str, posOrderList)))
