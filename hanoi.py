@@ -1,7 +1,6 @@
 from collections import deque
 for _ in range(int(input())):
-    x=int(input())
-    A,B=['','']
+    x=int(input())#revisar
     A_bar=deque([i for i in range(1, x+1)])
     B_bar=deque()
     C_bar=deque()
@@ -13,29 +12,37 @@ for _ in range(int(input())):
         if A=='X' and B=="X":
             if C_bar!=deque([j for j in range(1,x+1)]):
                 print('no soluciona la torre')
+            else:print('soluciona la torre')
             break
         elif A!=B:
             if A=='A' and B=='B':
-                Entrega=A_bar
-                Recibe=B_bar
+                if len(A_bar)==0 or (len(B_bar)>0 and A_bar[0]>=B_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:B_bar.appendleft(A_bar.popleft())
             elif A=='A' and B=='C':
-                Entrega=A_bar
-                Recibe=C_bar
+                if len(A_bar)==0 or (len(C_bar)>0 and A_bar[0]>=C_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:C_bar.appendleft(A_bar.popleft())
             elif A=='B' and B=='A':
-                Entrega=B_bar
-                Recibe=A_bar
+                if len(B_bar)==0 or (len(A_bar)>0 and B_bar[0]>=A_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:A_bar.appendleft(B_bar.popleft())
             elif A=='B' and B=='C':
-                Entrega=B_bar
-                Recibe=C_bar
+                if len(B_bar)==0 or (len(C_bar)>0 and B_bar[0]>=C_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:C_bar.appendleft(B_bar.popleft())
             elif A=='C' and B=='A':
-                Entrega=C_bar
-                Recibe=A_bar
+                if len(C_bar)==0 or (len(A_bar)>0 and C_bar[0]>=A_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:A_bar.appendleft(C_bar.popleft())
             elif A=='C' and B=='B':
-                Entrega=C_bar
-                Recibe=B_bar
-            if Entrega[0]>=Recibe[0]:
-                print('secuencia invalida')
-                break
-            else: Recibe.appendleft(Entrega.popleft())
+                if len(C_bar)==0 or (len(B_bar)>0 and C_bar[0]>=B_bar[0]):
+                    print('secuencia invalida')
+                    break
+                else:B_bar.appendleft(C_bar.popleft())
         else: continue
-        
