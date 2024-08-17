@@ -164,12 +164,32 @@ class AVLTree(object):
             self.delete(key)
             return key
         
+    def countLeaves(self):
+        return self._countLeavesRecursively(self.root)
+
+    def _countLeavesRecursively(self, root):
+        if root is None:
+            return 0
+        if root.height==1:
+            return 1
+        return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
+        
 #Ejercicio 1
+# for _ in range(int(input())):
+#     cadena=map(str, input().split(' '))
+#     arbol=AVLTree()
+#     for c in cadena:
+#         if c=='#':break
+#         arbol.insert(c)
+#     posOrderList=arbol.PosOrder()
+#     print(''.join(map(str, posOrderList)))
+
+#Ejercicio 2->genera errores para arboles totalmente descendentes o ascendentes
 for _ in range(int(input())):
     cadena=map(str, input().split(' '))
     arbol=AVLTree()
     for c in cadena:
-        if c=='#':break
+        if c=='-1':break
         arbol.insert(c)
-    posOrderList=arbol.PosOrder()
-    print(''.join(map(str, posOrderList)))
+    superficial_leaves=arbol.countLeaves()
+    print(superficial_leaves)
