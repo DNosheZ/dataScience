@@ -150,10 +150,10 @@ class AVLTree(object):
         self._inOrderRecursively(self.root, elements)
         return elements
 
-    def _PosOrderRecursively(self, root, elements):
+    def _inOrderRecursively(self, root, elements):
         if root:
-            self._PosOrderRecursively(root.left, elements)
-            self._PosOrderRecursively(root.right, elements)
+            self._inOrderRecursively(root.left, elements)
+            self._inOrderRecursively(root.right, elements)
             elements.append(root.key)
             
     def popMin(self):
@@ -175,14 +175,14 @@ class AVLTree(object):
         return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
         
 #Ejercicio 1
-# for _ in range(int(input())):
-#     cadena=map(str, input().split(' '))
-#     arbol=AVLTree()
-#     for c in cadena:
-#         if c=='#':break
-#         arbol.insert(c)
-#     posOrderList=arbol.PosOrder()
-#     print(''.join(map(str, posOrderList)))
+for _ in range(int(input())):
+    cadena=map(str, input().split(' '))
+    arbol=AVLTree()
+    for c in cadena:
+        if c=='#':break
+        arbol.insert(c)
+    posOrderList="".join(map(str,arbol.PosOrder()))
+    print(posOrderList)
 
 #Ejercicio 2->genera errores para arboles totalmente descendentes o ascendentes
 for _ in range(int(input())):
