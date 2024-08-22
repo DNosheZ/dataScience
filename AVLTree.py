@@ -163,16 +163,13 @@ class AVLTree(object):
             key = self._getMin(self.root)
             self.delete(key)
             return key
-        
-    def countLeaves(self):
-        return self._countLeavesRecursively(self.root)
 
-    def _countLeavesRecursively(self, root):
-        if root is None:
-            return 0
-        if root.height==1:
-            return 1
-        return self._countLeavesRecursively(root.left) + self._countLeavesRecursively(root.right)
+    def getTreeHeight(self,root):
+        if not root:return 0
+        left_height=self.getTreeHeight(root.left)
+        right_height=self.getTreeHeight(root.right)
+        return 1+max(left_height,right_height) 
+     
         
 #Ejercicio 1
 for _ in range(int(input())):
@@ -191,5 +188,4 @@ for _ in range(int(input())):
     for c in cadena:
         if c=='-1':break
         arbol.insert(c)
-    superficial_leaves=arbol.countLeaves()
-    print(superficial_leaves)
+    print()
