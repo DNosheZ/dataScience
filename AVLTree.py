@@ -170,6 +170,18 @@ class AVLTree(object):
         right_height=self.getTreeHeight(root.right)
         return 1+max(left_height,right_height) 
      
+    def countDeepestLeaves(self):
+        max_height = self.getTreeHeight(self.root)
+        return self._countDeepestLeavesRecursively(self.root, 1, max_height)
+
+    def _countDeepestLeavesRecursively(self, root, current_level, max_height):
+        if not root:
+            return 0
+        if not root.left and not root.right and current_level == max_height:
+            return 1
+        return (self._countDeepestLeavesRecursively(root.left, current_level + 1, max_height) +
+                self._countDeepestLeavesRecursively(root.right, current_level + 1, max_height))
+
         
 #Ejercicio 1
 for _ in range(int(input())):
@@ -183,9 +195,9 @@ for _ in range(int(input())):
 
 #Ejercicio 2->genera errores para arboles totalmente descendentes o ascendentes
 for _ in range(int(input())):
-    cadena=map(str, input().split(' '))
+    cadena=map(int, input().split(' '))
     arbol=AVLTree()
     for c in cadena:
-        if c=='-1':break
+        if c==-1:break
         arbol.insert(c)
-    print()
+    print(arbol.countDeepestLeaves())
