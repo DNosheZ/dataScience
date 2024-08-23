@@ -213,33 +213,62 @@ class AVLTree(object):
 
         return result
 
+    def print_tree_rotated(self, node=None, level=0):
+        if node is None:
+            node = self.root
+        if node.right:
+            self.print_tree_rotated(node.right, level + 1)
+        print('\t' * level + str(node.key))
+        if node.left:
+            self.print_tree_rotated(node.left, level + 1)
+
         
-#Ejercicio 1
-for _ in range(int(input())):
-    cadena=map(str, input().split(' '))
-    arbol=AVLTree()
-    for c in cadena:
-        if c=='#':break
-        arbol.insert(c)
-    posOrderList="".join(map(str,arbol.PosOrder()))
-    print(posOrderList)
+# #Ejercicio 1
+# for _ in range(int(input())):
+#     cadena=map(str, input().split(' '))
+#     arbol=AVLTree()
+#     for c in cadena:
+#         if c=='#':break
+#         arbol.insert(c)
+#     posOrderList="".join(map(str,arbol.PosOrder()))
+#     print(posOrderList)
 
-#Ejercicio 2->genera errores para arboles totalmente descendentes o ascendentes
-for _ in range(int(input())):
-    cadena=map(int, input().split(' '))
-    arbol=AVLTree()
-    for c in cadena:
-        if c==-1:break
-        arbol.insert(c)
-    print(arbol.countDeepestLeaves())
+# #Ejercicio 2->genera errores para arboles totalmente descendentes o ascendentes
+# for _ in range(int(input())):
+#     cadena=map(int, input().split(' '))
+#     arbol=AVLTree()
+#     for c in cadena:
+#         if c==-1:break
+#         arbol.insert(c)
+#     print(arbol.countDeepestLeaves())
 
-#Ejercicio 3-> cantar la cantidad de hijos que posee cada nivel
-while True:
-    bmax=int(input())
-    if bmax==0:break
-    cadena=map(int, input().split(' '))
+# #Ejercicio 3-> cantar la cantidad de hijos que posee cada nivel
+# while True:
+#     bmax=int(input())
+#     if bmax==0:break
+#     cadena=map(int, input().split(' '))
+#     arbol=AVLTree()
+#     for c in cadena:
+#         if c==-1:break
+#         arbol.insert(c)
+#     print('.'.join('.'.join(h[1:]) for h in [s.split(".") for s in arbol.childrenDescriptionPerLevel()]))
+
+#Ejercicio 4
+def FibonacciList(N):
+    if N == 1:
+        return 1
+    elif N == 2:
+        return 2
+    else:
+        a, b = 1, 2
+        for _ in range(3, N + 1):
+            a, b = b, a + b
+        return b
+
+for _ in range(int(input())):
+    cadena=int(input())
     arbol=AVLTree()
-    for c in cadena:
-        if c==-1:break
-        arbol.insert(c)
-    print('.'.join('.'.join(h[1:]) for h in [s.split(".") for s in arbol.childrenDescriptionPerLevel()]))
+    for i in range(1,cadena+1):
+        arbol.insert(FibonacciList(i))
+    arbol.print_tree_rotated()
+    
