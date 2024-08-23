@@ -198,11 +198,13 @@ class AVLTree(object):
                 result.append("")
 
             if node.left and node.right:
-                result[level] += "2"
-            elif node.left or node.right:
-                result[level] += "-1"
+                result[level] += ".2"
+            elif node.left and not node.right:
+                result[level] += ".-1"
+            elif not node.left and node.right:
+                result[level] += ".1"
             else:
-                result[level] += "0"
+                result[level] += ".0"
 
             if node.left:
                 queue.append((node.left, level + 1))
@@ -240,4 +242,4 @@ while True:
     for c in cadena:
         if c==-1:break
         arbol.insert(c)
-    print(arbol.childrenDescriptionPerLevel())
+    print('.'.join('.'.join(h[1:]) for h in [s.split(".") for s in arbol.childrenDescriptionPerLevel()]))
