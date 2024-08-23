@@ -181,6 +181,35 @@ class AVLTree(object):
             return 1
         return (self._countDeepestLeavesRecursively(root.left, current_level + 1, max_height) +
                 self._countDeepestLeavesRecursively(root.right, current_level + 1, max_height))
+    
+    def childrenDescriptionPerLevel(self):
+        if not self.root:
+            return []
+
+        from collections import deque
+
+        result = []
+        queue = deque([(self.root, 0)])
+
+        while queue:
+            node, level = queue.popleft()
+
+            if len(result) == level:
+                result.append("")
+
+            if node.left and node.right:
+                result[level] += "2"
+            elif node.left or node.right:
+                result[level] += "-1"
+            else:
+                result[level] += "0"
+
+            if node.left:
+                queue.append((node.left, level + 1))
+            if node.right:
+                queue.append((node.right, level + 1))
+
+        return result
 
         
 #Ejercicio 1
@@ -201,3 +230,14 @@ for _ in range(int(input())):
         if c==-1:break
         arbol.insert(c)
     print(arbol.countDeepestLeaves())
+
+#Ejercicio 3-> cantar la cantidad de hijos que posee cada nivel
+while True:
+    bmax=int(input())
+    if bmax==0:break
+    cadena=map(int, input().split(' '))
+    arbol=AVLTree()
+    for c in cadena:
+        if c==-1:break
+        arbol.insert(c)
+    print(arbol.childrenDescriptionPerLevel())
