@@ -123,6 +123,13 @@ class AVLTree(object):
             return root.key
         return self._getMin(root.left)
 
+    def _getMax(self, root):
+        if root is None:
+            return None
+        elif root.right is None:
+            return root.key
+        return self._getMin(root.right)
+    
     def search(self, key):
         return self._searchRecursively(self.root, key) != None
 
@@ -161,6 +168,14 @@ class AVLTree(object):
             return None
         else:
             key = self._getMin(self.root)
+            self.delete(key)
+            return key
+        
+    def popMax(self):
+        if self.size == 0:
+            return None
+        else:
+            key = self._getMax(self.root)
             self.delete(key)
             return key
 
@@ -271,4 +286,13 @@ for _ in range(int(input())):
     for i in range(1,cadena+1):
         arbol.insert(FibonacciList(i))
     arbol.print_tree_rotated()
+    
+
+#Ejercicio 5
+for _ in range(int(input())):
+    cadena=list(map(int,input().split(' ')))
+    arbol=AVLTree()
+    for i in cadena:
+        if i==-1:break
+        arbol.insert(i)
     
