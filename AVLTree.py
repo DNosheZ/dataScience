@@ -237,6 +237,13 @@ class AVLTree(object):
         if node.left:
             self.print_tree_rotated(node.left, level + 1)
 
+    def particles_colisionator(self):
+        while self.root.left is not None and self.root.right is not None:
+            max_molecule=self.popMax()
+            min_molecule=self.popMin()
+            if not self.search(max_molecule-min_molecule): self.insert(max_molecule-min_molecule)
+        return self.root
+
         
 # #Ejercicio 1
 # for _ in range(int(input())):
@@ -295,4 +302,9 @@ for _ in range(int(input())):
     for i in cadena:
         if i==-1:break
         arbol.insert(i)
+    while arbol.root.left is not None and arbol.root.right is not None:
+        max_molecule=arbol.popMax()
+        min_molecule=arbol.popMin()
+        if not arbol.search(max_molecule-min_molecule): arbol.insert(max_molecule-min_molecule)
+
     
