@@ -128,7 +128,7 @@ class AVLTree(object):
             return None
         elif root.right is None:
             return root.key
-        return self._getMin(root.right)
+        return self._getMax(root.right)
     
     def search(self, key):
         return self._searchRecursively(self.root, key) != None
@@ -238,11 +238,12 @@ class AVLTree(object):
             self.print_tree_rotated(node.left, level + 1)
 
     def particles_colisionator(self):
-        while self.root.left is not None and self.root.right is not None:
+        while not (self.root and not self.root.left and not self.root.right):
             max_molecule=self.popMax()
             min_molecule=self.popMin()
-            if not self.search(max_molecule-min_molecule): self.insert(max_molecule-min_molecule)
-        return self.root
+            bam=max_molecule-min_molecule 
+            if not self.search(max_molecule-min_molecule) or not self.root: self.insert(max_molecule-min_molecule)
+        return self.root.key
 
         
 # #Ejercicio 1
@@ -276,23 +277,23 @@ class AVLTree(object):
 #     print('.'.join('.'.join(h[1:]) for h in [s.split(".") for s in arbol.childrenDescriptionPerLevel()]))
 
 #Ejercicio 4
-def FibonacciList(N):
-    if N == 1:
-        return 1
-    elif N == 2:
-        return 2
-    else:
-        a, b = 1, 2
-        for _ in range(3, N + 1):
-            a, b = b, a + b
-        return b
+# def FibonacciList(N):
+#     if N == 1:
+#         return 1
+#     elif N == 2:
+#         return 2
+#     else:
+#         a, b = 1, 2
+#         for _ in range(3, N + 1):
+#             a, b = b, a + b
+#         return b
 
-for _ in range(int(input())):
-    cadena=int(input())
-    arbol=AVLTree()
-    for i in range(1,cadena+1):
-        arbol.insert(FibonacciList(i))
-    arbol.print_tree_rotated()
+# for _ in range(int(input())):
+#     cadena=int(input())
+#     arbol=AVLTree()
+#     for i in range(1,cadena+1):
+#         arbol.insert(FibonacciList(i))
+#     arbol.print_tree_rotated()
     
 
 #Ejercicio 5
@@ -302,9 +303,6 @@ for _ in range(int(input())):
     for i in cadena:
         if i==-1:break
         arbol.insert(i)
-    while arbol.root.left is not None and arbol.root.right is not None:
-        max_molecule=arbol.popMax()
-        min_molecule=arbol.popMin()
-        if not arbol.search(max_molecule-min_molecule): arbol.insert(max_molecule-min_molecule)
+    print(arbol.particles_colisionator())
 
     
