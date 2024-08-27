@@ -244,6 +244,50 @@ class AVLTree(object):
             bam=max_molecule-min_molecule 
             if not self.search(max_molecule-min_molecule) or not self.root: self.insert(max_molecule-min_molecule)
         return self.root.key
+    
+    def _isBalancedAndHeight(self, root):
+        if not root:
+            return True, 0
+
+        left_is_balanced, left_height = self._isBalancedAndHeight(root.left)
+        right_is_balanced, right_height = self._isBalancedAndHeight(root.right)
+
+        balance_factor = left_height - right_height
+        is_balanced = (left_is_balanced and right_is_balanced and
+                       balance_factor == 0)
+
+        if is_balanced:
+            return True, 1 + max(left_height, right_height)
+        else:
+            return False, max(left_height, right_height)
+
+    def findLargestBalancedSubtreeHeight(self):
+        if not self.root:
+            return 0
+        
+        is_balanced, height = self._isBalancedAndHeight(self.root)
+
+        if is_balanced:
+            return height
+        
+        left_height = self.findLargestBalancedSubtreeHeightFromNode(self.root.left)
+        right_height = self.findLargestBalancedSubtreeHeightFromNode(self.root.right)
+
+        return max(left_height, right_height)
+
+    def findLargestBalancedSubtreeHeightFromNode(self, node):
+        if not node:
+            return 0
+        
+        is_balanced, height = self._isBalancedAndHeight(node)
+
+        if is_balanced:
+            return height
+        
+        left_height = self.findLargestBalancedSubtreeHeightFromNode(node.left)
+        right_height = self.findLargestBalancedSubtreeHeightFromNode(node.right)
+
+        return max(left_height, right_height)
 
         
 # #Ejercicio 1
@@ -301,8 +345,15 @@ for _ in range(int(input())):
     cadena=list(map(int,input().split(' ')))
     arbol=AVLTree()
     for i in cadena:
-        if i==-1:break
+        if i==0:break
         arbol.insert(i)
     print(arbol.particles_colisionator())
 
-    
+#Ejercicio 6
+while True:
+    bmax=int(input())
+    if bmax==0:break
+    cadena=map(int, input().split(' '))
+    arbol=AVLTree()
+    for c in cadena:arbol.insert(c)
+    print(arbol.findLargestCompleteSubtreeHeight())
