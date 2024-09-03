@@ -1,6 +1,7 @@
 def criba_eratostenes(max_n):
     es_primo = [True] * (max_n + 1)
     es_primo[0] = es_primo[1] = False  # 0 y 1 no son primos
+
     for i in range(2, int(max_n**0.5) + 1):
         if es_primo[i]:
             for j in range(i * i, max_n + 1, i):
