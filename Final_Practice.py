@@ -24,10 +24,9 @@ while True:
                 R[0]+=Equipos[equipo][año][0]
                 R[1]+=Equipos[equipo][año][1]
                 R[2]+=Equipos[equipo][año][2]
-
-            if R > [0, 0, 0]:
+            if R[0]>=1 and R[1]>= 1 and R[2]>=1: #need a review!!
                 # Imprimir clave y la suma de las primeras 3 características
-                print(f'{equipo}, {sum(R)}')
+                print(f'{equipo} {sum(R)}')
         break
     elif Entrada[0] not in Equipos.keys():#primera vez que se registra el equipo como ganador
 
